@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Create Fuel Card{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-4">
+    <h2>Create Fuel Card</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+        </div>
+        <div class="mb-3">
+            {{ form.number.label_tag }}
+            {{ form.number }}
+        </div>
+        <div class="mb-3">
+            {{ form.status.label_tag }}
+            {{ form.status }}
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="{% url 'fuel_cards_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Create Transponder{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-4">
+    <h2>Create Transponder</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="{% url 'transponders_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

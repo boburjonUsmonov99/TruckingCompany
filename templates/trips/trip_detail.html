@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trip Detail</title>
+</head>
+<body>
+    <h1>Trip Detail</h1>
+    <p>Company Name: {{ trip.company_name }}</p>
+    <p>Driver Name: {{ trip.driver_name }}</p>
+    <p>Dispatcher Name: {{ trip.dispatcher_name }}</p>
+    <p>Broker Name: {{ trip.broker_name }}</p>
+    <p>Load ID: {{ trip.load_id }}</p>
+    <p>Weight: {{ trip.weight }}</p>
+    <p>Load Status: {{ trip.load_status }}</p>
+    <p>Broker Pay: {{ trip.broker_pay }}</p>
+    <p>Driver Pay: {{ trip.driver_pay }}</p>
+    <h2>Locations</h2>
+    <ul>
+        {% for location in trip.locations.all %}
+        <li>{{ location.location_type }} at {{ location.address }} (Sequence: {{ location.sequence }}, Date: {{ location.date }}, Time: {{ location.time }})</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'trip_list' %}">Back to Trip List</a>
+</body>
+</html>

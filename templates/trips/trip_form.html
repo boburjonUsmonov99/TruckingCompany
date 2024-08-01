@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Trip</title>
+    <style>
+        .form-row {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Create Trip</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div id="location-formset">
+            {{ formset.management_form }}
+            {% for form in formset %}
+                <div class="form-row">
+                    {{ form.as_p }}
+                </div>
+            {% endfor %}
+        </div>
+        <button type="button" onclick="addForm()">Add Location</button>
+        <button type="submit">Save</button>
+    </form>
+    <a href="{% url 'trip_list' %}">Back to Trip List</a>
+
+    <script>
+        var formIdx = {{ formset.total_form_count|default:0 }};
+        function addForm() {
+            var formsetDiv = document.getElementById('location-formset');
+            var newFormDiv = document.createElement('div');
+            newFormDiv.classList.add('form-row');
+
+            var emptyForm = `
+                <div class="form-row">
+                    <label for="id_locations-${formIdx}-location_type">Location type:</label>
+                    <select name="locations-${formIdx}-location_type" id="id_locations-${formIdx}-location_type">
+                        <option value="pickup">Pickup</option>
+                        <option value="delivery">Delivery</option>
+                    </select>
+                    <label for="id_locations-${formIdx}-address">Address:</label>
+                    <input type="text" name="locations-${formIdx}-address" id="id_locations-${formIdx}-address">
+                    <label for="id_locations-${formIdx}-sequence">Sequence:</label>
+                    <input type="number" name="locations-${formIdx}-sequence" id="id_locations-${formIdx}-sequence">
+                    <label for="id_locations-${formIdx}-date">Date:</label>
+                    <input type="date" name="locations-${formIdx}-date" id="id_locations-${formIdx}-date">
+                    <label for="id_locations-${formIdx}-time">Time:</label>
+                    <input type="time" name="locations-${formIdx}-time" id="id_locations-${formIdx}-time">
+                    <input type="checkbox" name="locations-${formIdx}-DELETE" id="id_locations-${formIdx}-DELETE">
+                    <label for="id_locations-${formIdx}-DELETE">Delete:</label>
+                </div>
+            `;
+
+            newFormDiv.innerHTML = emptyForm;
+            formsetDiv.appendChild(newFormDiv);
+
+            var totalForms = document.getElementById('id_locations-TOTAL_FORMS');
+            totalForms.value = formIdx + 1;
+            formIdx++;
+        }
+    </script>
+</body>
+</html>

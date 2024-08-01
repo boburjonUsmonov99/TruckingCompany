@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Delete Tablet{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-4">
+    <h2>Delete Tablet</h2>
+    <p>Are you sure you want to delete this tablet?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'tablets_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

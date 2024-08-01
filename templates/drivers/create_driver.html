@@ -1,0 +1,291 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}
+Create Driver
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/shared_styles.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Create a New Driver</h2>
+    <form id="driverForm" method="post" novalidate>
+        {% csrf_token %}
+
+        <div class="step" id="step-1">
+            <h3>Personal Information</h3>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="id_first_name" class="form-label">First Name</label>
+                    {{ form.first_name|as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    <label for="id_last_name" class="form-label">Last Name</label>
+                    {{ form.last_name|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="id_phone_number" class="form-label">Phone Number</label>
+                    {{ form.phone_number|as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    <label for="id_email" class="form-label">Email</label>
+                    {{ form.email|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="id_gender" class="form-label">Gender</label>
+                    {{ form.gender|as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    <label for="id_date_of_birth" class="form-label">Date of Birth</label>
+                    {{ form.date_of_birth|as_crispy_field }}
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="id_address_line1" class="form-label">Address Line 1</label>
+                {{ form.address_line1|as_crispy_field }}
+            </div>
+            <div class="mb-3">
+                <label for="id_address_line2" class="form-label">Address Line 2</label>
+                {{ form.address_line2|as_crispy_field }}
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="id_city" class="form-label">City</label>
+                    {{ form.city|as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    <label for="id_state" class="form-label">State</label>
+                    {{ form.state|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="id_country" class="form-label">Country</label>
+                    {{ form.country|as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    <label for="id_zip_code" class="form-label">Zip Code</label>
+                    {{ form.zip_code|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="id_license_number" class="form-label">License Number</label>
+                    {{ form.license_number|as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    <label for="id_license_state" class="form-label">License State</label>
+                    {{ form.license_state|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="id_license_expiration" class="form-label">License Expiration</label>
+                    {{ form.license_expiration|as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    <label for="id_experience_months" class="form-label">Experience Months</label>
+                    {{ form.experience_months|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="id_experience_years" class="form-label">Experience Years</label>
+                    {{ form.experience_years|as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    <label for="id_hire_date" class="form-label">Hire Date</label>
+                    {{ form.hire_date|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="id_employment_status" class="form-label">Employment Status</label>
+                    {{ form.employment_status|as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    <label for="id_truck_status" class="form-label">Truck Status</label>
+                    {{ form.truck_status|as_crispy_field }}
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+        </div>
+
+        <div class="step" id="step-2" style="display:none;">
+            <h3>Contract</h3>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="id_payment_type" class="form-label">Payment Type</label>
+                    {{ form.payment_type|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row mb-3" id="percentage-fields">
+                <div class="col-md-6">
+                    <label for="id_percentage" class="form-label">Percentage</label>
+                    {{ form.percentage|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row mb-3" id="mile-rate-fields">
+                <div class="col-md-6">
+                    <label for="id_loaded_mile_rate" class="form-label">Loaded Mile Rate</label>
+                    {{ form.loaded_mile_rate|as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    <label for="id_empty_mile_rate" class="form-label">Empty Mile Rate</label>
+                    {{ form.empty_mile_rate|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row mb-3" id="flat-amount-fields">
+                <div class="col-md-6">
+                    <label for="id_flat_amount" class="form-label">Flat Amount</label>
+                    {{ form.flat_amount|as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    <label for="id_days_week" class="form-label">Days per Week</label>
+                    {{ form.days_week|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row mb-3" id="hourly-payment-fields">
+                <div class="col-md-6">
+                    <label for="id_hourly_payment" class="form-label">Hourly Payment</label>
+                    {{ form.hourly_payment|as_crispy_field }}
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary" id="prevBtn">Previous</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+
+
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const step1 = document.getElementById('step-1');
+    const step2 = document.getElementById('step-2');
+    const form = document.getElementById('driverForm');
+    const paymentTypeField = document.getElementById('id_payment_type');
+    const percentageFields = document.getElementById('percentage-fields');
+    const mileRateFields = document.getElementById('mile-rate-fields');
+    const flatAmountFields = document.getElementById('flat-amount-fields');
+    const hourlyPaymentFields = document.getElementById('hourly-payment-fields');
+
+    function toggleFields() {
+        const paymentType = paymentTypeField.value;
+        percentageFields.style.display = paymentType === 'Percentage' ? 'block' : 'none';
+        mileRateFields.style.display = paymentType === 'Pay Per Mile' ? 'block' : 'none';
+        flatAmountFields.style.display = paymentType === 'Flat Pay' ? 'block' : 'none';
+        hourlyPaymentFields.style.display = paymentType === 'Hourly Pay' ? 'block' : 'none';
+    }
+
+    function validateField(field) {
+        if (!field.value && field.hasAttribute('required')) {
+            field.classList.add('is-invalid');
+            return false;
+        } else {
+            field.classList.remove('is-invalid');
+            return true;
+        }
+    }
+
+    function validateDateField(field) {
+        const datePattern = /^\d{4}-\d{2}-\d{2}$/;  // YYYY-MM-DD format
+        if (!datePattern.test(field.value) || isNaN(Date.parse(field.value))) {
+            field.classList.add('is-invalid');
+            return false;
+        } else {
+            field.classList.remove('is-invalid');
+            return true;
+        }
+    }
+
+    function validateNumericField(field) {
+        if (isNaN(field.value) || field.value < 0) {
+            field.classList.add('is-invalid');
+            return false;
+        } else {
+            field.classList.remove('is-invalid');
+            return true;
+        }
+    }
+
+    function validateStep1Fields() {
+        const step1Fields = step1.querySelectorAll('input, select');
+        let allValid = true;
+        step1Fields.forEach(function(field) {
+            if (field.type === 'date') {
+                if (!validateDateField(field)) allValid = false;
+            } else if (field.type === 'number' || field.id === 'id_experience_months' || field.id === 'id_experience_years' || field.id === 'id_zip_code') {
+                if (!validateNumericField(field)) allValid = false;
+            } else if (field.id === 'id_email') {
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(field.value)) {
+                    field.classList.add('is-invalid');
+                    allValid = false;
+                } else {
+                    field.classList.remove('is-invalid');
+                }
+            } else {
+                if (!validateField(field)) allValid = false;
+            }
+        });
+
+        return allValid;
+    }
+
+    function validateStep2Fields() {
+        const step2Fields = step2.querySelectorAll('input, select');
+        let allValid = true;
+        step2Fields.forEach(function(field) {
+            if (field.type === 'date') {
+                if (!validateDateField(field)) allValid = false;
+            } else if (field.type === 'number' || field.id === 'id_experience_months' || field.id === 'id_experience_years' || field.id === 'id_zip_code') {
+                if (!validateNumericField(field)) allValid = false;
+            } else {
+                if (!validateField(field)) allValid = false;
+            }
+        });
+
+        return allValid;
+    }
+
+    paymentTypeField.addEventListener('change', toggleFields);
+
+    nextBtn.addEventListener('click', function() {
+        if (validateStep1Fields()) {
+            step1.style.display = 'none';
+            step2.style.display = 'block';
+            toggleFields(); // Ensure the correct fields are shown when switching steps
+        }
+    });
+
+    prevBtn.addEventListener('click', function() {
+        step2.style.display = 'none';
+        step1.style.display = 'block';
+    });
+
+    // Initial call to set the correct fields when the page loads
+    toggleFields();
+
+    // Validate the form on submit to ensure all fields are filled
+    form.addEventListener('submit', function(event) {
+        if (!validateStep1Fields() || !validateStep2Fields()) {
+            event.preventDefault(); // Prevent form submission
+        }
+    });
+});
+</script>
+{% endblock %}

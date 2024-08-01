@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Create Truck{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-4">
+    <h2>Create Truck</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="{% url 'truck_registrations_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

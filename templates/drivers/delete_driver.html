@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Confirm Delete
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Confirm Delete</h2>
+    <div class="card border-0 bg-light rounded shadow">
+        <div class="card-body p-4">
+            <p>Are you sure you want to delete driver <strong>{{ driver.first_name }} {{ driver.last_name }}</strong>?</p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <a href="{% url 'drivers_list' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
